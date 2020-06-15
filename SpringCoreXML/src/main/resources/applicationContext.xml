@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
+ 
+ 	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+  
+<bean id="OrderDetails" class="com.rk.bean.OrderDetails">  
+<property name="orderID" value="1001"></property>  
+
+<property name="orderDate">
+	<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2019-01-31" />
+	</bean>
+</property>  
+
+<property name="productList">
+	<list>
+		<ref bean="ProductBean"/>
+		<ref bean="ProductBean1"/>
+	</list>
+
+</property>  
+
+<property name="UserDetails">
+	<ref bean="UserDetails"/>
+</property>
+<property name="orderStatus" value="initiated"></property>
+<property name="paymentDetails" value="Done"></property>  
+</bean>  
+
+<bean id="ProductBean" class="com.rk.bean.ProductBean">
+<property name="productID" value="101"></property> 
+<property name="productName" value="pendrive"></property>  
+<property name="sellerName" value="eco"></property>  
+<property name="price" value="50"></property>  
+<property name="productDesc" value="120GB"></property>   
+</bean>
+
+<bean id="ProductBean1" class="com.rk.bean.ProductBean">
+<property name="productID" value="102"></property> 
+<property name="productName" value="Nokia8.1"></property>  
+<property name="sellerName" value="Nokia"></property>  
+<property name="price" value="50000000"></property>  
+<property name="productDesc" value="8.1"></property>   
+</bean>
+
+<bean id="UserDetails" class="com.rk.bean.UserDetails">
+<property name="userName" value="Ravikumar K"></property> 
+<property name="addressList">
+<list>
+<ref bean="Address"/>
+</list>
+</property>    
+</bean>
+
+<bean id="Address" class="com.rk.bean.Address">
+<property name="houseName" value="RHouse"></property>
+<property name="landMark" value="iciciATM"></property> 
+<property name="area" value="Tavarakare"></property> 
+<property name="city" value="Bangalore"></property> 
+<property name="state" value="KA"></property>   
+</bean>
+
+	
+</beans> 
